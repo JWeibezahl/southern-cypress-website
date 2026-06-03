@@ -83,3 +83,45 @@ Secondary CTAs:
 Warm, confident, professional, Southern, trustworthy, polished, not cheap, not ultra luxury.
 
 Avoid sounding like a giant corporation or a one-man handyman.
+
+## Deploy Steps (Cloudflare Pages)
+
+Use these steps to deploy the current repository:
+
+1. Confirm code is pushed to GitHub:
+	- Repo: `https://github.com/JWeibezahl/southern-cypress-website`
+2. Sign in to Cloudflare and go to `Workers & Pages`.
+3. Click `Create application` -> `Pages` -> `Connect to Git`.
+4. Select GitHub and authorize Cloudflare if prompted.
+5. Choose repository: `JWeibezahl/southern-cypress-website`.
+6. Configure build settings:
+	- Framework preset: `None`
+	- Build command: leave blank
+	- Build output directory: `/`
+	- Root directory: leave blank
+7. Click `Save and Deploy`.
+8. After deployment completes, open the generated `*.pages.dev` URL and verify:
+	- Navigation links work
+	- Header logo and footer logo load
+	- Mobile menu works
+	- Contact page renders correctly
+
+## Connect Custom Domain
+
+1. In Cloudflare Pages project, open `Custom domains`.
+2. Click `Set up a custom domain`.
+3. Enter `southerncypresshomes.com` (and `www.southerncypresshomes.com` if desired).
+4. Follow Cloudflare DNS prompts to add or confirm records.
+5. Wait for SSL status to become active.
+
+## Ongoing Updates
+
+After future edits, deploy updates by pushing to `main`:
+
+```bash
+git add .
+git commit -m "Update site content"
+git push origin main
+```
+
+Cloudflare Pages will auto-deploy each push.
