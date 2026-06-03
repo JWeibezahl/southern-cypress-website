@@ -179,7 +179,7 @@ main {
 .hero {
   color: var(--color-white);
   background: linear-gradient(104deg, rgba(46, 59, 31, 0.94) 0%, rgba(46, 59, 31, 0.8) 39%, rgba(46, 59, 31, 0.52) 68%, rgba(46, 59, 31, 0.4) 100%),
-    url("../images/hero-home.svg") center/cover no-repeat;
+    url("../images/hero-home.jpg") center/cover no-repeat;
 }
 
 .hero .container {
