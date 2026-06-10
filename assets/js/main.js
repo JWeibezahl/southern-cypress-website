@@ -25,13 +25,3 @@ if (menuButton && primaryNav) {
     }
   });
 }
-
-document.querySelectorAll(".faq-toggle").forEach((toggle) => {
-  toggle.addEventListener("click", () => {
-    const item = toggle.closest(".faq-item");
-    if (!item) {
-      return;
-    }
-    item.classList.toggle("open");
-  });
-});
