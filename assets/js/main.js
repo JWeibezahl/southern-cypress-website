@@ -13,4 +13,25 @@ if (menuButton && primaryNav) {
       menuButton.setAttribute("aria-expanded", "false");
     });
   });
+
+  document.addEventListener("click", (event) => {
+    const target = event.target;
+    if (!(target instanceof Element)) {
+      return;
+    }
+    if (!primaryNav.contains(target) && !menuButton.contains(target)) {
+      primaryNav.classList.remove("open");
+      menuButton.setAttribute("aria-expanded", "false");
+    }
+  });
 }
+
+document.querySelectorAll(".faq-toggle").forEach((toggle) => {
+  toggle.addEventListener("click", () => {
+    const item = toggle.closest(".faq-item");
+    if (!item) {
+      return;
+    }
+    item.classList.toggle("open");
+  });
+});

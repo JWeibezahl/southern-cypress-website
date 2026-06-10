@@ -4,55 +4,91 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Contact Southern Cypress Homes | Request a Renovation Quote</title>
-    <meta
-      name="description"
-      content="Contact Southern Cypress Homes to request a quote for kitchen remodeling, bathroom remodeling, outdoor living, decks, painting, flooring, trim, and home updates in Florida."
-    />
+    <meta name="description" content="Contact Southern Cypress Homes for kitchen, bathroom, outdoor living, and home renovation quotes in Orlando, Winter Garden, Kissimmee, and Central Florida." />
+    <link rel="canonical" href="https://southerncypresshomes.com/contact.html" />
+    <meta property="og:title" content="Contact Southern Cypress Homes | Request a Renovation Quote" />
+    <meta property="og:description" content="Request a home renovation quote in Central Florida. Serving Orlando, Apopka, Winter Garden, Ocoee, Kissimmee, and surrounding areas." />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://southerncypresshomes.com/contact.html" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="assets/css/styles.css" />
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "ContactPage",
+        "name": "Contact Southern Cypress Homes",
+        "url": "https://southerncypresshomes.com/contact.html",
+        "about": {
+          "@type": "HomeAndConstructionBusiness",
+          "name": "Southern Cypress Homes",
+          "telephone": "+1-386-555-0198",
+          "email": "info@southerncypresshomes.com"
+        }
+      }
+    </script>
   </head>
   <body>
-    <header class="site-header"><div class="container nav-wrap"><a class="logo" href="index.html" aria-label="Southern Cypress Homes home"><img src="assets/images/logo-primary.jpg" alt="Southern Cypress Homes" /></a><button class="menu-toggle" aria-expanded="false" aria-controls="primary-nav" type="button">Menu</button><nav id="primary-nav" class="primary-nav" aria-label="Primary"><a href="index.html">Home</a><a href="about.html">About</a><a href="services.html">Services</a><a href="our-work.html">Our Work</a><a href="process.html">The Process</a><a href="reviews.html">Reviews</a><a class="active" href="contact.html">Contact</a><a class="btn btn-primary" href="contact.html">Get a Quote</a></nav></div></header>
+    <div class="top-bar"><div class="container top-bar-inner"><div class="top-links"><a href="tel:+13865550198">Call: 386-555-0198</a><a href="mailto:info@southerncypresshomes.com">Email: info@southerncypresshomes.com</a></div><p class="small">Serving Central Florida and nearby communities</p></div></div>
+    <header class="site-header"><div class="container nav-wrap"><a class="logo" href="index.html"><img src="assets/images/logo-primary.jpg" alt="Southern Cypress Homes" /></a><button class="menu-toggle" aria-expanded="false" aria-controls="primary-nav" type="button">Menu</button><nav id="primary-nav" class="primary-nav" aria-label="Primary"><a href="index.html">Home</a><a href="about.html">About</a><a href="services.html">Services</a><a href="our-work.html">Our Work</a><a href="process.html">Process</a><a href="reviews.html">Reviews</a><a class="active" href="contact.html">Contact</a><a class="btn btn-primary" href="contact.html">Get a Quote</a></nav></div></header>
+
     <main>
-      <section class="page-hero"><div class="container"><p class="eyebrow">Contact Southern Cypress Homes</p><h1>Let us Talk About Your Project.</h1><p>Tell us what you are looking to improve, and we will help you determine the best next step.</p></div></section>
+      <section class="page-hero"><div class="container"><p class="eyebrow">Contact</p><h1>Tell Us About Your Project.</h1><p>Share your project goals, timeline, and priorities. We will follow up with the best next step.</p></div></section>
       <section>
         <div class="container contact-grid">
           <div class="form-wrap">
             <h2>Request a Quote</h2>
-            <p>Share a few details about your project and we will follow up to schedule a consultation or request additional information.</p>
             <form class="form-grid">
-              <label>First Name<input type="text" name="firstName" /></label>
-              <label>Last Name<input type="text" name="lastName" /></label>
-              <label>Phone<input type="tel" name="phone" /></label>
-              <label>Email<input type="email" name="email" /></label>
-              <label class="full">Project Address<input type="text" name="address" /></label>
-              <label>Project Type<select name="type"><option>Kitchen Remodeling</option><option>Bathroom Remodeling</option><option>Outdoor Living</option><option>Decks &amp; Pergolas</option><option>Exterior Painting</option><option>Flooring &amp; Trim</option><option>Interior Renovation</option><option>Multiple Areas</option><option>Other</option></select></label>
-              <label>Project Timeline<input type="text" name="timeline" /></label>
-              <label class="full">Estimated Budget<input type="text" name="budget" /></label>
-              <label class="full">Tell Us About Your Project<textarea name="message"></textarea></label>
-              <label class="full">Upload Photos<input type="file" name="photos" /></label>
-              <label class="full"><button class="btn btn-primary" type="button">Submit Project Details</button></label>
+              <label class="full">Name<input type="text" name="name" required /></label>
+              <label>Email<input type="email" name="email" required /></label>
+              <label>Phone<input type="tel" name="phone" required /></label>
+              <label class="full">Address<input type="text" name="address" /></label>
+              <label>Project Type<select name="projectType"><option>Kitchen Remodeling</option><option>Bathroom Remodeling</option><option>Outdoor Living</option><option>Decks &amp; Pergolas</option><option>Exterior Painting</option><option>Flooring &amp; Trim</option><option>Multiple Areas</option><option>Other</option></select></label>
+              <label>Project Timeline<input type="text" name="timeline" placeholder="Example: 1-3 months" /></label>
+              <label class="full">Budget<input type="text" name="budget" placeholder="Example: 30,000-50,000" /></label>
+              <label class="full">Message<textarea name="message" required></textarea></label>
+              <label class="full">Upload Photos<input type="file" name="photos" multiple /></label>
+              <label class="full"><button class="btn btn-primary" type="submit">Submit</button></label>
             </form>
-            <div class="hubspot-placeholder">HubSpot embed placeholder: replace this box with your HubSpot form embed script when available.</div>
-            <p class="small">Thank you for contacting Southern Cypress Homes. We received your project request and will follow up as soon as possible.</p>
+            <div class="hubspot-placeholder">HubSpot form embed goes here. Replace this placeholder with your HubSpot embed script when ready.</div>
           </div>
           <aside class="form-wrap">
-            <h3>Contact Info</h3>
+            <h3>Contact Information</h3>
             <p><strong>Phone:</strong> <a href="tel:+13865550198">386-555-0198</a></p>
             <p><strong>Email:</strong> <a href="mailto:info@southerncypresshomes.com">info@southerncypresshomes.com</a></p>
             <p><strong>Service Area:</strong> Northeast and Central Florida</p>
-            <hr />
-            <h3>Prefer to Talk Now?</h3>
-            <p>Call or text us today to discuss your project.</p>
-            <p><a class="btn btn-primary" href="tel:+13865550198">Call 386-555-0198</a></p>
+            <p><a class="btn btn-secondary" href="tel:+13865550198">Tap to Call</a></p>
           </aside>
         </div>
       </section>
+      <section>
+        <div class="container">
+          <h2>Common Contact Questions</h2>
+          <div class="faq-list">
+            <article class="faq-item">
+              <button class="faq-toggle" type="button">Do you serve my city in Central Florida?</button>
+              <div class="faq-content">
+                <p>
+                  We serve Orlando, Apopka, Winter Garden, Ocoee, Kissimmee, Winter Park, Windermere, Dr Phillips, Ocala,
+                  Groveland, Paisley, Oakland, and nearby areas across Orange, Marion, Seminole, Polk, and Osceola Counties.
+                </p>
+              </div>
+            </article>
+            <article class="faq-item">
+              <button class="faq-toggle" type="button">Can I contact you if I searched for handyman services?</button>
+              <div class="faq-content">
+                <p>
+                  Yes. If your project is renovation-focused and you want coordinated, high-quality results, we are a strong fit.
+                </p>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
     </main>
-    <footer><div class="container"><img class="footer-logo-stack" src="assets/images/logo-alt.jpg" alt="Southern Cypress Homes" loading="lazy" /><p>Quality Craftsmanship. Homes Built to Last. | <a href="tel:+13865550198">386-555-0198</a> | <a href="mailto:info@southerncypresshomes.com">info@southerncypresshomes.com</a></p></div></footer>
-    <div class="mobile-cta"><a class="call" href="tel:+13865550198">Call Now</a><a class="quote" href="contact.html">Get a Quote</a></div>
-    <script src="assets/js/main.js"></script>
+
+    <footer><div class="container"><div class="grid footer-columns"><div><img class="footer-logo-stack" src="assets/images/logo-alt.jpg" alt="Southern Cypress Homes" loading="lazy" /><h3>Southern Cypress Homes</h3><p>Quality Craftsmanship. Homes Built to Last.</p></div><div><h4>Quick Links</h4><p><a href="about.html">About</a></p><p><a href="services.html">Services</a></p><p><a href="our-work.html">Our Work</a></p><p><a href="process.html">Process</a></p></div><div><h4>Contact</h4><p><a href="tel:+13865550198">386-555-0198</a></p><p><a href="mailto:info@southerncypresshomes.com">info@southerncypresshomes.com</a></p><p class="small">Service Area: Orlando, Apopka, Winter Garden, Ocoee, Kissimmee, Winter Park, Windermere, Dr Phillips, Ocala, Groveland, Paisley, Oakland, plus Orange, Marion, Seminole, Polk, and Osceola Counties</p></div><div><h4>Connect</h4><div class="social-links"><a href="#">FB</a><a href="#">IG</a><a href="#">HZ</a></div></div></div><p class="small">&copy; 2026 Southern Cypress Homes. All rights reserved.</p></div></footer>
+    <div class="mobile-cta"><a class="call" href="tel:+13865550198">Call Now</a><a class="quote" href="contact.html">Get a Quote</a></div><script src="assets/js/main.js"></script>
   </body>
 </html>
