@@ -169,30 +169,8 @@ function setupFooterIcons() {
       const copyright = container.querySelector(".small");
       container.insertBefore(social, copyright || null);
     }
-
-    const links = [
-      {
-        label: "Facebook",
-        href: "#",
-        svg: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>'
-      },
-      {
-        label: "Instagram",
-        href: "#",
-        svg: '<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37a4 4 0 1 1-3.73-3.73A4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>'
-      },
-      { label: "Houzz", icon: "home", href: "#" },
-      { label: "Google Reviews", icon: "star", href: "#" }
-    ];
-
-    social.innerHTML = links
-      .map((item) => {
-        const iconMarkup = item.svg
-          ? item.svg
-          : `<i data-lucide="${item.icon}" aria-hidden="true"></i>`;
-        return `<a href="${item.href}" aria-label="${item.label}"><span class="icon-wrap icon-footer">${iconMarkup}</span></a>`;
-      })
-      .join("");
+    social.innerHTML =
+      '<a href="https://www.facebook.com/SouthernCypressHomes/" aria-label="Southern Cypress Homes Facebook" target="_blank" rel="noopener noreferrer">Facebook</a>';
   });
 }
 
