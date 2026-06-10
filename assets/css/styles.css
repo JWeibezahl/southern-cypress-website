@@ -201,7 +201,7 @@ section {
 .hero {
   color: var(--white);
   background: linear-gradient(100deg, rgba(46, 59, 31, 0.92) 0%, rgba(46, 59, 31, 0.82) 42%, rgba(46, 59, 31, 0.48) 100%),
-    url("https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1800&q=85") center / cover no-repeat;
+    url("../images/hero-main-banner.png") center / cover no-repeat;
 }
 
 .hero .container {
@@ -231,20 +231,78 @@ section {
 .card {
   background: #fffefb;
   border: 1px solid rgba(46, 59, 31, 0.12);
-  border-radius: var(--radius);
-  box-shadow: var(--shadow);
+  border-radius: 8px;
+  box-shadow: 0 12px 35px rgba(0, 0, 0, 0.08);
   padding: 1.25rem;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
-.service-icon {
+.card:hover,
+.card:focus-within {
+  transform: translateY(-4px);
+}
+
+.service-icon,
+.icon-wrap {
   display: inline-flex;
-  width: 34px;
-  height: 34px;
   align-items: center;
   justify-content: center;
-  border: 1.5px solid var(--green);
-  color: var(--green);
-  margin-bottom: 0.7rem;
+  margin-bottom: 0.75rem;
+}
+
+.icon-wrap i[data-lucide] {
+  display: block;
+  stroke-width: 1.75;
+}
+
+.icon-service,
+.icon-service i[data-lucide] {
+  color: #445b2a;
+  width: 40px;
+  height: 40px;
+}
+
+.icon-why,
+.icon-why i[data-lucide] {
+  color: #c8a25a;
+  width: 48px;
+  height: 48px;
+}
+
+.icon-process,
+.icon-process i[data-lucide] {
+  color: #c8a25a;
+  width: 44px;
+  height: 44px;
+}
+
+.icon-contact,
+.icon-contact i[data-lucide] {
+  color: #c8a25a;
+  width: 20px;
+  height: 20px;
+  margin-right: 0.5rem;
+}
+
+.icon-footer,
+.icon-footer i[data-lucide] {
+  color: #c8a25a;
+  width: 18px;
+  height: 18px;
+}
+
+.icon-footer svg {
+  width: 18px;
+  height: 18px;
+  stroke: currentColor;
+  fill: none;
+  stroke-width: 1.75;
+}
+
+.service-strip .card,
+.service-grid .card,
+.why-grid .card {
+  text-align: center;
 }
 
 .about-preview {
@@ -306,6 +364,10 @@ section {
 .timeline li {
   padding: 1rem;
   border-bottom: 1px solid rgba(232, 235, 223, 0.22);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
 }
 
 .timeline li:last-child {
@@ -319,7 +381,7 @@ section {
 .page-hero {
   color: var(--white);
   background: linear-gradient(110deg, rgba(46, 59, 31, 0.9), rgba(46, 59, 31, 0.54)),
-    url("https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1800&q=85") center / cover no-repeat;
+    url("../images/southern-white-farmhouse.jpg") center / cover no-repeat;
 }
 
 .page-hero .container {
@@ -328,37 +390,37 @@ section {
 
 .hero-kitchen {
   background-image: linear-gradient(110deg, rgba(46, 59, 31, 0.88), rgba(46, 59, 31, 0.58)),
-    url("https://images.unsplash.com/photo-1556911220-bff31c812dba?auto=format&fit=crop&w=1200&q=85");
+    url("../images/kitchen-remodel-warm.jpg");
 }
 
 .hero-bathroom {
   background-image: linear-gradient(110deg, rgba(46, 59, 31, 0.88), rgba(46, 59, 31, 0.58)),
-    url("https://images.unsplash.com/photo-1584622650111-993a426fbf0a?auto=format&fit=crop&w=1200&q=85");
+    url("../images/bathroom-remodel-timeless.jpg");
 }
 
 .hero-outdoor {
   background-image: linear-gradient(110deg, rgba(46, 59, 31, 0.88), rgba(46, 59, 31, 0.58)),
-    url("https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?auto=format&fit=crop&w=1200&q=85");
+    url("../images/outdoor-living-porch.jpg");
 }
 
 .hero-deck {
   background-image: linear-gradient(110deg, rgba(46, 59, 31, 0.88), rgba(46, 59, 31, 0.58)),
-    url("https://images.unsplash.com/photo-1598902108854-10e335adac99?auto=format&fit=crop&w=1200&q=85");
+    url("../images/deck-pergola-southern.jpg");
 }
 
 .hero-exterior {
   background-image: linear-gradient(110deg, rgba(46, 59, 31, 0.88), rgba(46, 59, 31, 0.58)),
-    url("https://images.unsplash.com/photo-1570129477492-45c003edd2be?auto=format&fit=crop&w=1200&q=85");
+    url("../images/exterior-paint-blue-white.jpg");
 }
 
 .hero-flooring {
   background-image: linear-gradient(110deg, rgba(46, 59, 31, 0.88), rgba(46, 59, 31, 0.58)),
-    url("https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?auto=format&fit=crop&w=1200&q=85");
+    url("../images/flooring-trim-interior.jpg");
 }
 
 .hero-about {
   background-image: linear-gradient(110deg, rgba(46, 59, 31, 0.88), rgba(46, 59, 31, 0.58)),
-    url("https://images.unsplash.com/photo-1600566752355-35792bedcfea?auto=format&fit=crop&w=1200&q=85");
+    url("../images/southern-white-farmhouse.jpg");
 }
 
 .page-hero.hero-kitchen,
@@ -451,12 +513,36 @@ footer {
 .social-links {
   display: flex;
   gap: 0.5rem;
+  margin-top: 1rem;
 }
 
 .social-links a {
-  border: 1px solid rgba(215, 222, 203, 0.4);
-  padding: 0.2rem 0.45rem;
-  font-size: 0.75rem;
+  border: 1px solid rgba(200, 162, 90, 0.35);
+  width: 38px;
+  height: 38px;
+  border-radius: 999px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.2s ease, border-color 0.2s ease;
+}
+
+.social-links a:hover,
+.social-links a:focus-visible {
+  background-color: rgba(255, 255, 255, 0.14);
+  border-color: #ffffff;
+}
+
+.social-links a:hover .icon-footer,
+.social-links a:focus-visible .icon-footer,
+.social-links a:hover .icon-footer i[data-lucide],
+.social-links a:focus-visible .icon-footer i[data-lucide] {
+  color: #ffffff;
+}
+
+.contact-meta-item {
+  display: flex;
+  align-items: center;
 }
 
 .small {
