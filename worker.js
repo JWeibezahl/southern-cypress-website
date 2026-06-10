@@ -2,7 +2,7 @@ export default {
   async fetch(request, env) {
     const url = new URL(request.url);
 
-    if (url.pathname === "/api/contact") {
+    if (url.pathname === "/api/contact" || url.pathname === "/api/comtact") {
       return handleContact(request, env);
     }
 
