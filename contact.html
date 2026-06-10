@@ -62,7 +62,7 @@
                 const fd = new FormData(this);
                 const data = Object.fromEntries(fd.entries());
                 try {
-                  const res = await fetch('/api/contact', {
+                  const res = await fetch('https://southerncypress.cramp20.workers.dev/api/contact', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify(data)

@@ -6,8 +6,7 @@ export default {
       return handleContact(request, env);
     }
 
-    // Serve static assets for all non-API requests.
-    return env.ASSETS.fetch(request);
+    return new Response("Not found", { status: 404 });
   },
 };
 
