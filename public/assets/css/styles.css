@@ -195,11 +195,31 @@ section {
 
 .menu-toggle {
   display: none;
-  border: 1px solid rgba(46, 59, 31, 0.25);
-  background: #f7f2e7;
+  border: 1px solid rgba(46, 59, 31, 0.28);
+  background: linear-gradient(180deg, #f7f2e7 0%, #efe7d7 100%);
   color: var(--green-dark);
-  border-radius: var(--radius);
-  padding: 0.45rem 0.68rem;
+  border-radius: 999px;
+  padding: 0.5rem 0.9rem;
+  font-size: 0.76rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.menu-toggle:hover,
+.menu-toggle:focus-visible {
+  background: var(--gold);
+  border-color: var(--gold);
+  color: var(--white);
+  box-shadow: 0 6px 16px rgba(34, 45, 22, 0.22);
+}
+
+.menu-toggle[aria-expanded="true"] {
+  background: var(--green-dark);
+  border-color: var(--green-dark);
+  color: var(--white);
 }
 
 .hero {
@@ -597,7 +617,9 @@ footer {
 
 @media (max-width: 900px) {
   .menu-toggle {
-    display: inline-block;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
   }
 
   .primary-nav {
