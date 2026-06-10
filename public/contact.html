@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Contact Southern Cypress Homes | Request a Renovation Quote</title>
+    <meta name="description" content="Contact Southern Cypress Homes for premium home renovation services in Northeast Florida." />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="assets/css/styles.css" />
+  </head>
+  <body>
+    <div class="top-bar"><div class="container top-bar-inner"><div class="top-links"><a href="tel:+13865550198">Phone: 386-555-0198</a><a href="mailto:sales@southerncypresshomes.com">Email: sales@southerncypresshomes.com</a></div><p class="small">Proudly Serving Central Florida</p></div></div>
+    <header class="site-header"><div class="container nav-wrap"><a class="logo" href="index.html"><img src="assets/images/logo-primary.jpg" alt="Southern Cypress Homes" /></a><button class="menu-toggle" aria-expanded="false" aria-controls="primary-nav" type="button">Menu</button><nav id="primary-nav" class="primary-nav"><a href="index.html">Home</a><a href="about.html">About</a><a href="services.html">Services</a><a href="process.html">The Process</a><a href="reviews.html">Reviews</a><a class="active" href="contact.html">Contact</a><a class="btn btn-primary" href="contact.html">Get a Quote</a></nav></div></header>
+
+    <main>
+      <section class="page-hero"><div class="container"><h1>Contact</h1><p>Tell us about your project and we will help you map out the next step.</p></div></section>
+      <section>
+        <div class="container contact-grid">
+          <div class="form-wrap">
+            <h2>Request a Quote</h2>
+            <div id="form-success" style="display:none;padding:1.2rem;background:#e8f0e0;border-radius:6px;margin-bottom:1rem;">
+              <strong>Message sent.</strong> We will be in touch shortly.
+            </div>
+            <div id="form-error" style="display:none;padding:1.2rem;background:#fbe8e8;border-radius:6px;margin-bottom:1rem;">
+              <strong>Something went wrong.</strong> Please call us or try again.
+            </div>
+            <form id="contact-form" class="form-grid">
+              <label>First Name<input type="text" name="firstName" required /></label>
+              <label>Last Name<input type="text" name="lastName" required /></label>
+              <label>Phone<input type="tel" name="phone" required /></label>
+              <label>Email<input type="email" name="email" required /></label>
+              <label class="full">Project Address<input type="text" name="address" /></label>
+              <label>Project Type
+                <select name="projectType">
+                  <option>Kitchen Remodeling</option>
+                  <option>Bathroom Remodeling</option>
+                  <option>Outdoor Living</option>
+                  <option>Decks &amp; Pergolas</option>
+                  <option>Exterior Painting</option>
+                  <option>Flooring &amp; Trim</option>
+                  <option>Whole Home Updates</option>
+                  <option>Other</option>
+                </select>
+              </label>
+              <label>Timeline<input type="text" name="timeline" /></label>
+              <label class="full">Budget<input type="text" name="budget" /></label>
+              <label class="full">Message<textarea name="message" required></textarea></label>
+              <label class="full"><button id="form-submit" class="btn btn-primary" type="submit">Submit</button></label>
+            </form>
+            <script>
+              document.getElementById('contact-form').addEventListener('submit', async function(e) {
+                e.preventDefault();
+                const btn = document.getElementById('form-submit');
+                const successEl = document.getElementById('form-success');
+                const errorEl = document.getElementById('form-error');
+                successEl.style.display = 'none';
+                errorEl.style.display = 'none';
+                btn.disabled = true;
+                btn.textContent = 'Sending…';
+                const fd = new FormData(this);
+                const data = Object.fromEntries(fd.entries());
+                try {
+                  const res = await fetch('https://southerncypress.cramp20.workers.dev/api/contact', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(data)
+                  });
+                  const json = await res.json();
+                  if (json.ok) {
+                    successEl.style.display = 'block';
+                    this.reset();
+                  } else {
+                    errorEl.style.display = 'block';
+                  }
+                } catch {
+                  errorEl.style.display = 'block';
+                } finally {
+                  btn.disabled = false;
+                  btn.textContent = 'Submit';
+                }
+              });
+            </script>
+          </div>
+          <aside class="form-wrap">
+            <h3>Contact Information</h3>
+            <p><strong>Phone:</strong> <a href="tel:+13865550198">386-555-0198</a></p>
+            <p><strong>Email:</strong> <a href="mailto:sales@southerncypresshomes.com">sales@southerncypresshomes.com</a></p>
+            <p><strong>Service Area:</strong> Central Florida</p>
+          </aside>
+        </div>
+      </section>
+    </main>
+
+    <footer><div class="container"><div class="grid footer-columns"><div><img class="footer-logo" src="assets/images/logo-alt.jpg" alt="Southern Cypress Homes" loading="lazy" /><p>Quality Craftsmanship. Homes Built to Last.</p></div><div><h4>Quick Links</h4><div class="footer-links"><a href="about.html">About</a><a href="services.html">Services</a><a href="contact.html">Contact</a></div></div><div><h4>Services</h4><div class="footer-services"><a href="kitchen-remodeling.html">Kitchen Remodeling</a><a href="bathroom-remodeling.html">Bathroom Remodeling</a><a href="outdoor-living.html">Outdoor Living</a><a href="decks-and-pergolas.html">Decks &amp; Pergolas</a><a href="exterior-painting.html">Exterior Painting</a><a href="flooring-and-trim.html">Flooring &amp; Trim</a></div></div><div><h4>Contact</h4><p><a href="tel:+13865550198">386-555-0198</a></p><p><a href="mailto:sales@southerncypresshomes.com">sales@southerncypresshomes.com</a></p><div class="footer-cta"><h4>Ready to Start?</h4><p>We are ready when you are.</p><a class="btn btn-primary" href="contact.html">Get a Quote</a></div></div></div><p class="small">&copy; 2026 Southern Cypress Homes. All rights reserved.</p></div></footer>
+    <div class="mobile-cta"><a class="call" href="tel:+13865550198">Call Now</a><a class="quote" href="contact.html">Get a Quote</a></div>
+    <script src="assets/js/lucide.min.js"></script>
+    <script src="assets/js/main.js"></script>
+  </body>
+</html>

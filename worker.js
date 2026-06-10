@@ -6,7 +6,7 @@ export default {
       return handleContact(request, env);
     }
 
-    return new Response("Not found", { status: 404 });
+    return env.ASSETS.fetch(request);
   },
 };
 

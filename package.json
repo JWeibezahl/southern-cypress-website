@@ -1,0 +1,7 @@
+{
+  "name": "southern-cypress-website-md-pack",
+  "private": true,
+  "devDependencies": {
+    "wrangler": "^4.99.0"
+  }
+}
