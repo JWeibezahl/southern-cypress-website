@@ -20,7 +20,13 @@
         <div class="container contact-grid">
           <div class="form-wrap">
             <h2>Request a Quote</h2>
-            <form class="form-grid">
+            <div id="form-success" style="display:none;padding:1.2rem;background:#e8f0e0;border-radius:6px;margin-bottom:1rem;">
+              <strong>Message sent.</strong> We will be in touch shortly.
+            </div>
+            <div id="form-error" style="display:none;padding:1.2rem;background:#fbe8e8;border-radius:6px;margin-bottom:1rem;">
+              <strong>Something went wrong.</strong> Please call us or try again.
+            </div>
+            <form id="contact-form" class="form-grid">
               <label>First Name<input type="text" name="firstName" required /></label>
               <label>Last Name<input type="text" name="lastName" required /></label>
               <label>Phone<input type="tel" name="phone" required /></label>
@@ -41,15 +47,47 @@
               <label>Timeline<input type="text" name="timeline" /></label>
               <label class="full">Budget<input type="text" name="budget" /></label>
               <label class="full">Message<textarea name="message" required></textarea></label>
-              <label class="full">Photo Upload<input type="file" name="photos" multiple /></label>
-              <label class="full"><button class="btn btn-primary" type="submit">Submit</button></label>
+              <label class="full"><button id="form-submit" class="btn btn-primary" type="submit">Submit</button></label>
             </form>
+            <script>
+              document.getElementById('contact-form').addEventListener('submit', async function(e) {
+                e.preventDefault();
+                const btn = document.getElementById('form-submit');
+                const successEl = document.getElementById('form-success');
+                const errorEl = document.getElementById('form-error');
+                successEl.style.display = 'none';
+                errorEl.style.display = 'none';
+                btn.disabled = true;
+                btn.textContent = 'Sending…';
+                const fd = new FormData(this);
+                const data = Object.fromEntries(fd.entries());
+                try {
+                  const res = await fetch('/api/contact', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(data)
+                  });
+                  const json = await res.json();
+                  if (json.ok) {
+                    successEl.style.display = 'block';
+                    this.reset();
+                  } else {
+                    errorEl.style.display = 'block';
+                  }
+                } catch {
+                  errorEl.style.display = 'block';
+                } finally {
+                  btn.disabled = false;
+                  btn.textContent = 'Submit';
+                }
+              });
+            </script>
           </div>
           <aside class="form-wrap">
             <h3>Contact Information</h3>
             <p><strong>Phone:</strong> <a href="tel:+13865550198">386-555-0198</a></p>
             <p><strong>Email:</strong> <a href="mailto:sales@southerncypresshomes.com">sales@southerncypresshomes.com</a></p>
-            <p><strong>Service Area:</strong> Northeast Florida</p>
+            <p><strong>Service Area:</strong> Central Florida</p>
           </aside>
         </div>
       </section>
