@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
+  <url>
+    <loc>https://southerncypresshomes.com/</loc>
+    <image:image><image:loc>https://southerncypresshomes.com/assets/images/hero-main-banner.png</image:loc><image:title>Southern Cypress Homes Hero Banner</image:title></image:image>
+    <image:image><image:loc>https://southerncypresshomes.com/assets/images/logo-primary.png</image:loc><image:title>Southern Cypress Homes Primary Logo</image:title></image:image>
+    <image:image><image:loc>https://southerncypresshomes.com/assets/images/logo-alt.png</image:loc><image:title>Southern Cypress Homes Alternate Logo</image:title></image:image>
+  </url>
+  <url><loc>https://southerncypresshomes.com/kitchen-remodeling.html</loc><image:image><image:loc>https://southerncypresshomes.com/assets/images/kitchen-remodel-warm.jpg</image:loc><image:title>Kitchen Remodeling Central Florida</image:title></image:image></url>
+  <url><loc>https://southerncypresshomes.com/bathroom-remodeling.html</loc><image:image><image:loc>https://southerncypresshomes.com/assets/images/bathroom-remodel-timeless.jpg</image:loc><image:title>Bathroom Remodeling Central Florida</image:title></image:image></url>
+  <url><loc>https://southerncypresshomes.com/outdoor-living.html</loc><image:image><image:loc>https://southerncypresshomes.com/assets/images/outdoor-living-porch.jpg</image:loc><image:title>Outdoor Living Spaces</image:title></image:image></url>
+  <url><loc>https://southerncypresshomes.com/decks-and-pergolas.html</loc><image:image><image:loc>https://southerncypresshomes.com/assets/images/deck-pergola-southern.jpg</image:loc><image:title>Deck and Pergola Construction</image:title></image:image></url>
+  <url><loc>https://southerncypresshomes.com/exterior-painting.html</loc><image:image><image:loc>https://southerncypresshomes.com/assets/images/exterior-paint-blue-white.jpg</image:loc><image:title>Exterior Painting Services</image:title></image:image></url>
+  <url><loc>https://southerncypresshomes.com/flooring-and-trim.html</loc><image:image><image:loc>https://southerncypresshomes.com/assets/images/flooring-trim-interior.jpg</image:loc><image:title>Flooring and Trim Installation</image:title></image:image></url>
+</urlset>
