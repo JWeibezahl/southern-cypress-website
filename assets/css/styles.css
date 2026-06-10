@@ -480,7 +480,7 @@ textarea {
 footer {
   background: #243018;
   color: #d7decb;
-  padding: 3.2rem 0 1.2rem;
+  padding: 1rem 0 1.2rem;
 }
 
 .footer-columns {
@@ -489,7 +489,7 @@ footer {
 }
 
 .footer-logo {
-  width: min(220px, 70vw);
+  width: min(150px, 60vw);
 }
 
 .footer-services,
@@ -666,7 +666,7 @@ footer {
   }
 
   footer {
-    padding-bottom: 4.9rem;
+    padding-bottom: 2rem;
   }
 }
 
