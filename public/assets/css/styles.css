@@ -168,7 +168,7 @@ section {
 
 .logo img {
   width: auto;
-  height: 240px;
+  height: 130px;
 }
 
 .primary-nav {
@@ -672,7 +672,7 @@ footer {
 
 @media (max-width: 480px) {
   .logo img {
-    height: 190px;
+    height: 100px;
   }
 
   .hero .container {
