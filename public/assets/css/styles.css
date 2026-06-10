@@ -706,7 +706,7 @@ footer {
   }
 
   footer {
-    padding-bottom: 2rem;
+    padding-bottom: calc(5.4rem + env(safe-area-inset-bottom));
   }
 }
 
