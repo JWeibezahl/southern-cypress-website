@@ -86,7 +86,7 @@ async function handleContact(request, env) {
       },
       body: JSON.stringify({
         message: {
-          subject: `New Quote Request - ${firstName} ${lastName}`,
+          subject: "New Contact Form Request",
           body: {
             contentType: "Text",
             content: emailBody,
