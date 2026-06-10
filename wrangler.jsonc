@@ -1,6 +1,7 @@
 {
   "$schema": "node_modules/wrangler/config-schema.json",
   "name": "southerncypress",
+  "main": "worker.js",
   "compatibility_date": "2026-06-03",
   "observability": {
     "enabled": true
