@@ -394,8 +394,8 @@ section {
 }
 
 .page-hero .container {
-  padding: 4.8rem 0;
-  min-height: 400px;
+  padding: 2.6rem 0;
+  min-height: clamp(260px, 34vh, 340px);
   display: flex;
   flex-direction: column;
   justify-content: center;
