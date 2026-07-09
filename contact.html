@@ -69,7 +69,7 @@
             <form id="contact-form" class="form-grid">
               <label>First Name<input type="text" name="firstName" required /></label>
               <label>Last Name<input type="text" name="lastName" required /></label>
-              <label>Phone<input type="tel" name="phone" required /></label>
+              <label>Phone<input type="tel" name="phone" id="phone" required autocomplete="tel" inputmode="tel" placeholder="(407) 555-1212" /></label>
               <label>Email<input type="email" name="email" required /></label>
               <label class="full" id="address-field">Project Address<input type="hidden" name="address" id="address" /><gmp-place-autocomplete id="address-autocomplete" placeholder="Start typing your address…" style="display:block;"></gmp-place-autocomplete></label>
               <label>Project Type
@@ -186,6 +186,29 @@
                     budgetRaw.value = '';
                     e.preventDefault();
                   }
+                });
+              })();
+
+              // US phone formatting
+              (function() {
+                const phoneInput = document.getElementById('phone');
+                if (!phoneInput) {
+                  return;
+                }
+
+                function formatPhone(rawValue) {
+                  const digits = rawValue.replace(/\D/g, '').slice(0, 10);
+                  if (digits.length <= 3) {
+                    return digits;
+                  }
+                  if (digits.length <= 6) {
+                    return `(${digits.slice(0, 3)}) ${digits.slice(3)}`;
+                  }
+                  return `(${digits.slice(0, 3)}) ${digits.slice(3, 6)}-${digits.slice(6)}`;
+                }
+
+                phoneInput.addEventListener('input', function() {
+                  this.value = formatPhone(this.value);
                 });
               })();
 
