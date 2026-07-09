@@ -24,7 +24,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="assets/css/styles.css" />
-    <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBlWLHuo25cCn7xWj03nUWrYVAqdv7wQN8&libraries=places" async defer></script>
       <script id="page-entity-schema" type="application/ld+json">
       {
         "@context": "https://schema.org",
@@ -71,7 +71,7 @@
               <label>Last Name<input type="text" name="lastName" required /></label>
               <label>Phone<input type="tel" name="phone" required /></label>
               <label>Email<input type="email" name="email" required /></label>
-              <label class="full">Project Address<input type="text" name="address" /></label>
+              <label class="full" id="address-field">Project Address<input type="hidden" name="address" id="address" /><gmp-place-autocomplete id="address-autocomplete" placeholder="Start typing your address…" style="display:block;"></gmp-place-autocomplete></label>
               <label>Project Type
                 <select name="projectType">
                   <option>Kitchen Remodeling</option>
@@ -85,12 +85,110 @@
                 </select>
               </label>
               <label>Timeline<input type="text" name="timeline" /></label>
-              <label class="full">Budget<input type="text" name="budget" /></label>
+              <label class="full">Budget<input type="text" name="budget" id="budget" placeholder="$0" autocomplete="off" inputmode="numeric" /></label>
               <label class="full">Message<textarea name="message" required></textarea></label>
+              <input type="hidden" name="budgetRaw" id="budgetRaw" />
               <div class="full cf-turnstile" data-sitekey="0x4AAAAAADyzoXeNV0kDcRkj" style="margin-bottom:0.5rem;"></div>
               <label class="full"><button id="form-submit" class="btn btn-primary" type="submit">Submit</button></label>
             </form>
             <script>
+              const isWorkersDevHost = window.location.hostname.endsWith('.workers.dev');
+
+              function initTurnstile() {
+                const widget = document.querySelector('.cf-turnstile');
+                if (!widget) {
+                  return;
+                }
+
+                if (isWorkersDevHost) {
+                  widget.style.display = 'none';
+                  return;
+                }
+
+                const script = document.createElement('script');
+                script.src = 'https://challenges.cloudflare.com/turnstile/v0/api.js';
+                script.async = true;
+                script.defer = true;
+                document.head.appendChild(script);
+              }
+
+              function fallbackToManualAddressInput() {
+                const addressField = document.getElementById('address-field');
+                if (!addressField) {
+                  return;
+                }
+
+                const existingHidden = document.getElementById('address');
+                if (existingHidden) {
+                  existingHidden.remove();
+                }
+
+                const widget = document.getElementById('address-autocomplete');
+                if (widget) {
+                  widget.remove();
+                }
+
+                const manual = document.createElement('input');
+                manual.type = 'text';
+                manual.name = 'address';
+                manual.id = 'address';
+                manual.placeholder = 'Enter your full address';
+                manual.autocomplete = 'street-address';
+                addressField.appendChild(manual);
+              }
+
+              async function initAddressAutocomplete() {
+                const hiddenAddress = document.getElementById('address');
+                const placeAutocomplete = document.getElementById('address-autocomplete');
+                if (!hiddenAddress || !placeAutocomplete) {
+                  return;
+                }
+
+                if (!window.google || !google.maps || !google.maps.importLibrary) {
+                  fallbackToManualAddressInput();
+                  return;
+                }
+
+                try {
+                  await google.maps.importLibrary('places');
+
+                  placeAutocomplete.includedRegionCodes = ['us'];
+                  placeAutocomplete.addEventListener('gmp-select', async function(event) {
+                    const prediction = event.placePrediction || (event.detail && event.detail.placePrediction);
+                    if (!prediction) {
+                      return;
+                    }
+
+                    const place = prediction.toPlace();
+                    await place.fetchFields({ fields: ['formattedAddress'] });
+                    hiddenAddress.value = place.formattedAddress || '';
+                  });
+                } catch {
+                  fallbackToManualAddressInput();
+                }
+              }
+
+              initTurnstile();
+              window.addEventListener('load', initAddressAutocomplete);
+
+              // Budget dollar formatting
+              (function() {
+                const budgetInput = document.getElementById('budget');
+                const budgetRaw = document.getElementById('budgetRaw');
+                budgetInput.addEventListener('input', function() {
+                  const raw = this.value.replace(/[^0-9]/g, '');
+                  budgetRaw.value = raw;
+                  this.value = raw ? '$' + Number(raw).toLocaleString('en-US') : '';
+                });
+                budgetInput.addEventListener('keydown', function(e) {
+                  if (e.key === 'Backspace' && this.value === '$') {
+                    this.value = '';
+                    budgetRaw.value = '';
+                    e.preventDefault();
+                  }
+                });
+              })();
+
               document.getElementById('contact-form').addEventListener('submit', async function(e) {
                 e.preventDefault();
                 const btn = document.getElementById('form-submit');
@@ -102,8 +200,14 @@
                 btn.textContent = 'Sending…';
                 const fd = new FormData(this);
                 const data = Object.fromEntries(fd.entries());
+                const placeAutocomplete = document.getElementById('address-autocomplete');
+                if (placeAutocomplete && !data.address && placeAutocomplete.value) {
+                  data.address = placeAutocomplete.value;
+                }
+                if (data.budgetRaw) { data.budget = '$' + Number(data.budgetRaw).toLocaleString('en-US'); }
+                delete data.budgetRaw;
                 const turnstileToken = data['cf-turnstile-response'];
-                if (!turnstileToken) {
+                if (!isWorkersDevHost && !turnstileToken) {
                   errorEl.style.display = 'block';
                   btn.disabled = false;
                   btn.textContent = 'Submit';

@@ -30,6 +30,8 @@ async function handleContact(request, env) {
   }
 
   try {
+    const url = new URL(request.url);
+    const isWorkersDevHost = url.hostname.endsWith(".workers.dev");
     const body = await request.json();
     const { firstName, lastName, phone, email, address, projectType, timeline, budget, message } = body;
     const turnstileToken = body["cf-turnstile-response"];
@@ -41,28 +43,30 @@ async function handleContact(request, env) {
       });
     }
 
-    if (!turnstileToken) {
+    if (!isWorkersDevHost && !turnstileToken) {
       return new Response(JSON.stringify({ ok: false, error: "CAPTCHA token missing." }), {
         status: 400,
         headers,
       });
     }
 
-    const tsVerify = await fetch("https://challenges.cloudflare.com/turnstile/v0/siteverify", {
-      method: "POST",
-      headers: { "Content-Type": "application/x-www-form-urlencoded" },
-      body: new URLSearchParams({
-        secret: env.TURNSTILE_SECRET,
-        response: turnstileToken,
-        remoteip: request.headers.get("CF-Connecting-IP") ?? "",
-      }),
-    });
-    const tsResult = await tsVerify.json();
-    if (!tsResult.success) {
-      return new Response(JSON.stringify({ ok: false, error: "CAPTCHA verification failed." }), {
-        status: 403,
-        headers,
+    if (!isWorkersDevHost) {
+      const tsVerify = await fetch("https://challenges.cloudflare.com/turnstile/v0/siteverify", {
+        method: "POST",
+        headers: { "Content-Type": "application/x-www-form-urlencoded" },
+        body: new URLSearchParams({
+          secret: env.TURNSTILE_SECRET,
+          response: turnstileToken,
+          remoteip: request.headers.get("CF-Connecting-IP") ?? "",
+        }),
       });
+      const tsResult = await tsVerify.json();
+      if (!tsResult.success) {
+        return new Response(JSON.stringify({ ok: false, error: "CAPTCHA verification failed." }), {
+          status: 403,
+          headers,
+        });
+      }
     }
 
     const tokenRes = await fetch(
