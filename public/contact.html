@@ -24,6 +24,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="assets/css/styles.css" />
+    <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
       <script id="page-entity-schema" type="application/ld+json">
       {
         "@context": "https://schema.org",
@@ -86,6 +87,7 @@
               <label>Timeline<input type="text" name="timeline" /></label>
               <label class="full">Budget<input type="text" name="budget" /></label>
               <label class="full">Message<textarea name="message" required></textarea></label>
+              <div class="full cf-turnstile" data-sitekey="0x4AAAAAADyzoXeNV0kDcRkj" style="margin-bottom:0.5rem;"></div>
               <label class="full"><button id="form-submit" class="btn btn-primary" type="submit">Submit</button></label>
             </form>
             <script>
@@ -100,6 +102,13 @@
                 btn.textContent = 'Sending…';
                 const fd = new FormData(this);
                 const data = Object.fromEntries(fd.entries());
+                const turnstileToken = data['cf-turnstile-response'];
+                if (!turnstileToken) {
+                  errorEl.style.display = 'block';
+                  btn.disabled = false;
+                  btn.textContent = 'Submit';
+                  return;
+                }
                 try {
                   const res = await fetch('/api/contact', {
                     method: 'POST',
