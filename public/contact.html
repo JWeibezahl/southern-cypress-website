@@ -221,14 +221,25 @@
                   return;
                 }
 
+                let emailTouched = false;
+                let formSubmitted = false;
+
                 function updateEmailWarning() {
                   const hasValue = emailInput.value.trim().length > 0;
                   const isValid = emailInput.checkValidity();
-                  emailWarning.style.display = hasValue && !isValid ? 'block' : 'none';
+                  const shouldShow = (emailTouched || formSubmitted) && hasValue && !isValid;
+                  emailWarning.style.display = shouldShow ? 'block' : 'none';
                 }
 
-                emailInput.addEventListener('input', updateEmailWarning);
-                emailInput.addEventListener('blur', updateEmailWarning);
+                emailInput.addEventListener('blur', function() {
+                  emailTouched = true;
+                  updateEmailWarning();
+                });
+
+                document.getElementById('contact-form').addEventListener('submit', function() {
+                  formSubmitted = true;
+                  updateEmailWarning();
+                });
               })();
 
               document.getElementById('contact-form').addEventListener('submit', async function(e) {
@@ -238,8 +249,8 @@
                   const emailWarning = document.getElementById('email-warning');
                   if (emailInput && emailWarning && !emailInput.checkValidity()) {
                     emailWarning.style.display = 'block';
+                    emailInput.focus();
                   }
-                  this.reportValidity();
                   return;
                 }
                 const btn = document.getElementById('form-submit');
