@@ -43,6 +43,14 @@ async function handleContact(request, env) {
       });
     }
 
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
+    if (!emailRegex.test(email)) {
+      return new Response(JSON.stringify({ ok: false, error: "Invalid email format." }), {
+        status: 400,
+        headers,
+      });
+    }
+
     if (!isWorkersDevHost && !turnstileToken) {
       return new Response(JSON.stringify({ ok: false, error: "CAPTCHA token missing." }), {
         status: 400,
