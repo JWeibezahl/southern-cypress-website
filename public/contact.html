@@ -70,7 +70,8 @@
               <label>First Name<input type="text" name="firstName" required /></label>
               <label>Last Name<input type="text" name="lastName" required /></label>
               <label>Phone<input type="tel" name="phone" id="phone" required autocomplete="tel" inputmode="tel" placeholder="(407) 555-1212" /></label>
-              <label>Email<input type="email" name="email" required pattern="^[^\s@]+@[^\s@]+\.[^\s@]{2,}$" title="Please enter a valid email address (example: name@domain.com)" /></label>
+              <label>Email<input type="email" name="email" id="email" required pattern="^[^\s@]+@[^\s@]+\.[^\s@]{2,}$" title="Please enter a valid email address (example: name@domain.com)" /></label>
+              <div id="email-warning" class="full" style="display:none;color:#a33;font-size:0.92rem;margin-top:-0.35rem;">Please enter a valid email (example: name@domain.com).</div>
               <label class="full" id="address-field">Project Address<input type="hidden" name="address" id="address" /><gmp-place-autocomplete id="address-autocomplete" placeholder="Start typing your address…" style="display:block;"></gmp-place-autocomplete></label>
               <label>Project Type
                 <select name="projectType">
@@ -212,9 +213,32 @@
                 });
               })();
 
+              // Email warning feedback
+              (function() {
+                const emailInput = document.getElementById('email');
+                const emailWarning = document.getElementById('email-warning');
+                if (!emailInput || !emailWarning) {
+                  return;
+                }
+
+                function updateEmailWarning() {
+                  const hasValue = emailInput.value.trim().length > 0;
+                  const isValid = emailInput.checkValidity();
+                  emailWarning.style.display = hasValue && !isValid ? 'block' : 'none';
+                }
+
+                emailInput.addEventListener('input', updateEmailWarning);
+                emailInput.addEventListener('blur', updateEmailWarning);
+              })();
+
               document.getElementById('contact-form').addEventListener('submit', async function(e) {
                 e.preventDefault();
                 if (!this.checkValidity()) {
+                  const emailInput = document.getElementById('email');
+                  const emailWarning = document.getElementById('email-warning');
+                  if (emailInput && emailWarning && !emailInput.checkValidity()) {
+                    emailWarning.style.display = 'block';
+                  }
                   this.reportValidity();
                   return;
                 }
